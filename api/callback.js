@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
       }
     );
     console.log("FULL RESPONSE:", JSON.stringify(response.data));
-    const { access_token, refresh_token, expires_in } = response.data;
+    const { access_token, refresh_token, expires_in } = response.data.data;
     console.log("Access Token:", access_token);
     console.log("Refresh Token:", refresh_token);
     res.status(200).send(
