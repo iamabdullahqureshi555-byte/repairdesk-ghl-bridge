@@ -1,13 +1,10 @@
 const axios = require("axios");
-
 module.exports = async (req, res) => {
   const { code } = req.query;
-
   if (!code) {
     res.status(400).send("No authorization code received.");
     return;
   }
-
   try {
     const response = await axios.post(
       "https://api.repairdesk.co/api/web/v1/oauth2/token",
@@ -22,12 +19,10 @@ module.exports = async (req, res) => {
         headers: { "Content-Type": "application/json" },
       }
     );
-
+    console.log("FULL RESPONSE:", JSON.stringify(response.data));
     const { access_token, refresh_token, expires_in } = response.data;
-
     console.log("Access Token:", access_token);
     console.log("Refresh Token:", refresh_token);
-
     res.status(200).send(
       "Token exchange successful! Access token received (expires in " +
         expires_in +
